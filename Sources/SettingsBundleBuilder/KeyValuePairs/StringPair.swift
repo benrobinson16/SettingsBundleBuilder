@@ -16,6 +16,9 @@ struct StringPair: KeyValuePair {
     func getXML() -> String? {
         guard let value = value else { return nil }
         
-        return "<key>\(key)</key><string>\(value)</string>"
+        return """
+            <key>\(key)</key>
+            <string>\(value)</string>
+            """
     }
 }

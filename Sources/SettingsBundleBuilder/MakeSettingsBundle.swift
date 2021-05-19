@@ -14,7 +14,9 @@ public func makeSettingsBundle(
     path: String,
     @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
 ) {
-    let contentplist = content().map { $0.makePlist() }.joined()
+    let contentplist = content()
+        .map { $0.makePlist() }
+        .joined(separator: "\n")
     let contents = """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

@@ -23,9 +23,12 @@ public struct Toggle: SettingsBundleItem {
     public func makePlist() -> String {
         let entries: [KeyValuePair] = [
             StringPair("Type", value: "PSToggleSwitchSpecifier"),
+            StringPair("Key", value: key),
             StringPair("Title", value: title),
             BoolPair("DefaultValue", value: defaultValue)
         ]
-        return entries.compactMap { $0.getXML() }.joined().makeDict()
+        return entries.compactMap { $0.getXML() }
+            .joined(separator: "\n")
+            .makeDict()
     }
 }

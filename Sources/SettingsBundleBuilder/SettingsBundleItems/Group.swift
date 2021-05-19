@@ -38,8 +38,13 @@ public struct Group: SettingsBundleItem {
             StringPair("Title", value: title),
             StringPair("FooterText", value: footerText)
         ]
-        let group = entries.compactMap { $0.getXML() }.joined().makeDict()
-        let children = items.map { $0.makePlist() }.joined()
-        return group + children
+        let group = entries
+            .compactMap { $0.getXML() }
+            .joined(separator: "\n")
+            .makeDict()
+        let children = items
+            .map { $0.makePlist() }
+            .joined(separator: "\n")
+        return group + "\n" + children
     }
 }

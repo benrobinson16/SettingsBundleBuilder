@@ -6,10 +6,10 @@
 
 extension String {
     func makeDict() -> String {
-        return "<dict>" + self + "</dict>"
+        return "<dict>\n" + self + "\n</dict>"
     }
     
     func makeArray() -> String {
-        return "<array>" + self + "</array>"
+        return "<array>\n" + self + "\n</array>"
     }
 }

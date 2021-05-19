@@ -17,9 +17,15 @@ struct BoolPair: KeyValuePair {
         guard let value = value else { return nil }
         
         if value {
-            return "<key>\(key)</key><true/>"
+            return """
+                <key>\(key)</key>
+                <true/>
+                """
         }
         
-        return "<key>\(key)</key><false/>"
+        return """
+            <key>\(key)</key>
+            <false/>
+            """
     }
 }

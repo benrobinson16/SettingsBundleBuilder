@@ -52,6 +52,9 @@ public struct TextField: SettingsBundleItem {
             StringPair("AutocapitalizationType", value: autocapitalization?.rawValue),
             StringPair("AutocorrectionType", value: autocorrection?.rawValue)
         ]
-        return entries.compactMap { $0.getXML() }.joined().makeDict()
+        return entries
+            .compactMap { $0.getXML() }
+            .joined(separator: "\n")
+            .makeDict()
     }
 }
