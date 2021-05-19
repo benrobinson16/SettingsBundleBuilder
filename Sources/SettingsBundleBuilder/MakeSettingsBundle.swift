@@ -35,6 +35,6 @@ public func makeSettingsBundle(
     let bundleUrl = baseUrl.appendingPathComponent("Settings.bundle")
     try! FileManager.default.createDirectory(at: bundleUrl, withIntermediateDirectories: true, attributes: nil)
     
-    let plistUrl = baseUrl.appendingPathComponent("root.plist")
+    let plistUrl = baseUrl.appendingPathComponent("Root.plist")
     try! contents.data(using: .utf8)?.write(to: plistUrl)
 }
