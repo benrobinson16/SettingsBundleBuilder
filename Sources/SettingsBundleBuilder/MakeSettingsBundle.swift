@@ -13,10 +13,15 @@ import Foundation
 public func makeSettingsBundle(
     @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
 ) {
+    let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
+    
+    if FileManager.default.fileExists(atPath: baseUrl.absoluteString) {
+        try! FileManager.default.removeItem(at: baseUrl)
+    }
+    
     makeAndWritePlist(contents: content(), filename: "Root")
     
-    let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
-    shell("open", url.absoluteString)
+    shell("open", baseUrl.absoluteString)
 }
 
 func makeAndWritePlist(contents: [SettingsBundleItem], filename: String) {
