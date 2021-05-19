@@ -12,10 +12,10 @@ public struct Page: SettingsBundleItem, NonGroupSettingsBundleItem {
     
     public init(
         _ title: String,
-        @SettingsBundleBuilder items: () -> [SettingsBundleItem]
+        @SettingsBundleBuilder content: () -> [SettingsBundleItem]
     ) {
         self.title = title
-        self.items = items()
+        self.items = content()
     }
     
     public func makePlist() -> String {

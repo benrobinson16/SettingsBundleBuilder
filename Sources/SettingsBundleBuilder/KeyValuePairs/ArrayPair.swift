@@ -16,9 +16,11 @@ struct ArrayPair: KeyValuePair {
     func getXML() -> String? {
         guard let values = values else { return nil }
         
-        return values
+        let arr = values
             .map { "<string>\($0)</string>" }
             .joined(separator: "\n")
             .makeArray()
+        
+        return "<key>\(key)</key>\n" + arr
     }
 }

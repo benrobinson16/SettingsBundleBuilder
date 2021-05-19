@@ -13,11 +13,11 @@ public struct Group: SettingsBundleItem {
     public init(
         _ title: String? = nil,
         footerText: String? = nil,
-        @NonGroupSettingsBundleBuilder items: () -> [NonGroupSettingsBundleItem]
+        @NonGroupSettingsBundleBuilder content: () -> [NonGroupSettingsBundleItem]
     ) {
         self.title = title
         self.footerText = footerText
-        self.items = items()
+        self.items = content()
     }
     
     public func makePlist() -> String {
