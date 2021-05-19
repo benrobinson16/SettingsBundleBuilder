@@ -10,6 +10,11 @@ public struct Group: SettingsBundleItem {
     let title: String?
     let footerText: String?
     
+    /// Makes a new `Group` item
+    /// - Parameters:
+    ///   - title: The title to display above the group
+    ///   - footerText: The text to display below the group
+    ///   - content: The content of the group
     public init(
         _ title: String? = nil,
         footerText: String? = nil,

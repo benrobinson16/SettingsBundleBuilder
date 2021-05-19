@@ -14,6 +14,15 @@ public struct MultiValue: SettingsBundleItem, NonGroupSettingsBundleItem {
     let shortReadable: [String]?
     let sortByTitle: Bool?
     
+    /// Makes a new `MultiValue` item
+    /// - Parameters:
+    ///   - title: The string to display to the side of the selection
+    ///   - key: The key of the `UserDefaults` value to change
+    ///   - defaultValue: The value to use if the key is not in `UserDefaults`
+    ///   - possibleValues: The possible values the selection may take
+    ///   - readableVersions: The readable versions of the `possibleValues`; array should be of same order and length
+    ///   - shortVersions: Shorter versions of the `readableVersions` to display
+    ///   - sortByTitle: Whether to sort the options alphabetically
     public init(
         _ title: String,
         key: String,

@@ -9,6 +9,11 @@ public struct Toggle: SettingsBundleItem, NonGroupSettingsBundleItem {
     let key: String
     let defaultValue: Bool
     
+    /// Makes a new `Toggle` item
+    /// - Parameters:
+    ///   - title: The string to display to the side of the toggle
+    ///   - key: The key of the `UserDefaults` value to change
+    ///   - defaultValue: The value to use if the key is not in `UserDefaults`
     public init(
         _ title: String,
         key: String,

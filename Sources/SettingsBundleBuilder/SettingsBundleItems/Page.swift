@@ -10,6 +10,10 @@ public struct Page: SettingsBundleItem, NonGroupSettingsBundleItem {
     let title: String
     let items: [SettingsBundleItem]
     
+    /// Makes a new `Page` item
+    /// - Parameters:
+    ///   - title: The title of the `NavigationLink` to the page
+    ///   - content: The content of the new page
     public init(
         _ title: String,
         @SettingsBundleBuilder content: () -> [SettingsBundleItem]

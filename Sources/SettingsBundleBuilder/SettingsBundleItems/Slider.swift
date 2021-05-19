@@ -12,6 +12,12 @@ public struct Slider: SettingsBundleItem, NonGroupSettingsBundleItem {
 //    let minImage: String
 //    let maxImage: String
     
+    /// Makes a new `Slider` item
+    /// - Parameters:
+    ///   - key: The key of the `UserDefaults` value to change
+    ///   - defaultValue: The value to use if the key is not in `UserDefaults`
+    ///   - min: The minimum value of the slider
+    ///   - max: The maximum value of the slider
     public init(
         key: String,
         defaultValue: Double,

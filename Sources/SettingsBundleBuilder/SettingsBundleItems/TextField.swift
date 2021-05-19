@@ -14,6 +14,15 @@ public struct TextField: SettingsBundleItem, NonGroupSettingsBundleItem {
     let autocapitalization: AutocapitalizationType?
     let autocorrection: AutocorrectionType?
     
+    /// Makes a new `TextField` item
+    /// - Parameters:
+    ///   - title: The string to display to the side of the text field
+    ///   - key: The key of the `UserDefaults` value to change
+    ///   - defaultValue: The value to use if the key is not in `UserDefaults`
+    ///   - isSecure: Whether or not the `TextField` is for entering sensitive data
+    ///   - keyboard: The keyboard to use (e.g. number pad)
+    ///   - autocapitalization: The autocapitalization strategy to use (useful to change for emails, usernames, etc)
+    ///   - autocorrection: The autocorrect strategy to use (useful to change for emails, usernames, etc)
     public init(
         _ title: String,
         key: String,

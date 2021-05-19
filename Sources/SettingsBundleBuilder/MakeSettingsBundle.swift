@@ -6,19 +6,13 @@
 
 import Foundation
 
-/// Actually makes the `Settings.bundle` folder.
-/// - Parameters:
-///   - path: The path from the root of the Xcode project to where you would like the bundle to be located. Do not include the filename of the settings bundle.
-///   - content: The `SettingsBundleItem`s that you would like to add to the bundle.
+/// Makes and opens a new `Settings.bundle`
+/// - Parameter content: The content of the bundle
 public func makeSettingsBundle(
     @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
 ) {
     let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
-    
-//    var isDir: ObjCBool = true
-//    if FileManager.default.fileExists(atPath: baseUrl.absoluteString, isDirectory: &isDir) {
-        try! FileManager.default.removeItem(at: baseUrl)
-//    }
+    try! FileManager.default.removeItem(at: baseUrl)
     
     makeAndWritePlist(contents: content(), filename: "Root")
     
