@@ -15,10 +15,10 @@ public func makeSettingsBundle(
 ) {
     let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
     
-    var isDir: ObjCBool = true
-    if FileManager.default.fileExists(atPath: baseUrl.absoluteString, isDirectory: &isDir) {
+//    var isDir: ObjCBool = true
+//    if FileManager.default.fileExists(atPath: baseUrl.absoluteString, isDirectory: &isDir) {
         try! FileManager.default.removeItem(at: baseUrl)
-    }
+//    }
     
     makeAndWritePlist(contents: content(), filename: "Root")
     
