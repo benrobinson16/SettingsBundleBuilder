@@ -30,10 +30,7 @@ public func makeSettingsBundle(
         </plist>
         """
     
-    let currentUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-    try! FileManager.default.createDirectory(at: currentUrl, withIntermediateDirectories: true, attributes: nil)
-    
-    let baseUrl = currentUrl.appendingPathComponent("Settings Bundle")
+    let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
     print(baseUrl.absoluteString)
     
     let bundleUrl = baseUrl.appendingPathComponent("Settings.bundle")
@@ -44,7 +41,7 @@ public func makeSettingsBundle(
     print(plistUrl.absoluteString)
     try! contents.data(using: .utf8)?.write(to: plistUrl)
     
-    shell("open", currentUrl.absoluteString)
+    shell("open", baseUrl.absoluteString)
 }
 
 @discardableResult
