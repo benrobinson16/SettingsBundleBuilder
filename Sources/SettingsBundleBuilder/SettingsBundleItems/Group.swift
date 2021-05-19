@@ -26,11 +26,11 @@ public struct Group: SettingsBundleItem {
     ///   - title: The title of the group
     ///   - footerText: The footer of the group
     ///   - item: The item to display inside the group
-    public init(title: String? = nil, footerText: String? = nil, item: () -> SettingsBundleItem) {
-        self.title = title
-        self.footerText = footerText
-        self.items = [item()]
-    }
+//    public init(title: String? = nil, footerText: String? = nil, item: () -> SettingsBundleItem) {
+//        self.title = title
+//        self.footerText = footerText
+//        self.items = [item()]
+//    }
     
     public func makePlist() -> String {
         let entries: [KeyValuePair] = [
