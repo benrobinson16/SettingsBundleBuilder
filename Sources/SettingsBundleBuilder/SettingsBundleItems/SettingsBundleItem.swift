@@ -4,7 +4,10 @@
 // SettingsBundleBuilder
 // SettingsBundleItem.swift
 
-/// Describes a type that can operate as an item in a settings bundle
 public protocol SettingsBundleItem {
+    func makePlist() -> String
+}
+
+public protocol NonGroupSettingsBundleItem {
     func makePlist() -> String
 }

@@ -16,3 +16,14 @@ public struct SettingsBundleBuilder {
         return items
     }
 }
+
+@resultBuilder
+public struct NonGroupSettingsBundleBuilder {
+    static public func buildBlock() -> [NonGroupSettingsBundleItem] {
+        return []
+    }
+    
+    static public func buildBlock(_ items: NonGroupSettingsBundleItem...) -> [NonGroupSettingsBundleItem] {
+        return items
+    }
+}

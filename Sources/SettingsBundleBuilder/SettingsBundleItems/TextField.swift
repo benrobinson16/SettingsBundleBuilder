@@ -4,28 +4,19 @@
 // SettingsBundleBuilder
 // TextField.swift
 
-public struct TextField: SettingsBundleItem {
+public struct TextField: SettingsBundleItem, NonGroupSettingsBundleItem {
     let title: String
     let key: String
     
-    var defaultValue: String?
-    var isSecure: Bool?
-    var keyboard: KeyboardType?
-    var autocapitalization: AutocapitalizationType?
-    var autocorrection: AutocorrectionType?
+    let defaultValue: String?
+    let isSecure: Bool?
+    let keyboard: KeyboardType?
+    let autocapitalization: AutocapitalizationType?
+    let autocorrection: AutocorrectionType?
     
-    /// Makes a new `TextField` for a settings bundle
-    /// - Parameters:
-    ///   - key: The `UserDefaults` key to read/write data
-    ///   - title: The title of the text field
-    ///   - defaultValue: The default value in case it is not found in `UserDefaults`
-    ///   - isSecure: Whether or not the text field should use secure password style
-    ///   - keyboard: The keyboard to use for data entry
-    ///   - autocapitalization: The autocapitalization rule
-    ///   - autocorrection: The autocorrection rule
     public init(
-        _ key: String,
-        title: String,
+        _ title: String,
+        key: String,
         defaultValue: String? = nil,
         isSecure: Bool? = nil,
         keyboard: KeyboardType? = nil,

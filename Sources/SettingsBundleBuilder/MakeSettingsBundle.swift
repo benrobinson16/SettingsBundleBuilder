@@ -11,13 +11,20 @@ import Foundation
 ///   - path: The path from the root of the Xcode project to where you would like the bundle to be located. Do not include the filename of the settings bundle.
 ///   - content: The `SettingsBundleItem`s that you would like to add to the bundle.
 public func makeSettingsBundle(
-    path: String,
     @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
 ) {
-    let contentplist = content()
+    makeAndWritePlist(contents: content(), filename: "Root")
+    
+    let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
+    shell("open", url.absoluteString)
+}
+
+func makeAndWritePlist(contents: [SettingsBundleItem], filename: String) {
+    let contentplist = contents
         .map { $0.makePlist() }
         .joined(separator: "\n")
-    let contents = """
+    
+    let plist = """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
         <plist version="1.0">
@@ -33,17 +40,11 @@ public func makeSettingsBundle(
         """
     
     let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
-    print(baseUrl.absoluteString)
-    
     let bundleUrl = baseUrl.appendingPathComponent("Settings.bundle")
-    print(bundleUrl.absoluteString)
     try! FileManager.default.createDirectory(at: bundleUrl, withIntermediateDirectories: true, attributes: nil)
     
-    let plistUrl = bundleUrl.appendingPathComponent("Root.plist")
-    print(plistUrl.absoluteString)
-    try! contents.data(using: .utf8)?.write(to: plistUrl)
-    
-    shell("open", baseUrl.absoluteString)
+    let plistUrl = bundleUrl.appendingPathComponent("\(filename).plist")
+    try! plist.data(using: .utf8)?.write(to: plistUrl)
 }
 
 @discardableResult

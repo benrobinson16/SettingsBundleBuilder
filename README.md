@@ -31,7 +31,7 @@ products: [
 ```swift
 import SettingsBundleBuilder
 
-makeSettingsBundle("Path/To/Bundle") {
+makeSettingsBundle {
     Group {
         TextField("username", title: "Enter username:", defaultValue: "")
         Toggle("personalization", title: "Enable personalization:", defaultValue: false)
@@ -49,3 +49,9 @@ makeSettingsBundle("Path/To/Bundle") {
 ## In Depth
 
 All public methods and types are documented so use `Command + click` to view quick help in Xcode.
+
+### Groups
+
+A `Group` offers a way to organise multiple items. Optionally provide header and footer text.
+
+**NOTE**: If an non-group item is placed at the root level after a `Group`, it will appear in the group due to the formatting of a `.plist` file. To avoid this, embed this item in a group.

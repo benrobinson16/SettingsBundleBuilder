@@ -5,32 +5,20 @@
 // Group.swift
 
 public struct Group: SettingsBundleItem {
-    var title: String?
-    var footerText: String?
+    let items: [NonGroupSettingsBundleItem]
     
-    let items: [SettingsBundleItem]
+    let title: String?
+    let footerText: String?
     
-    /// Makes a new `Group` with multiple children
-    /// - Parameters:
-    ///   - title: The title of the group
-    ///   - footerText: The footer of the group
-    ///   - items: The items to display inside the group
-    public init(title: String? = nil, footerText: String? = nil, @SettingsBundleBuilder items: () -> [SettingsBundleItem]) {
+    public init(
+        _ title: String? = nil,
+        footerText: String? = nil,
+        @NonGroupSettingsBundleBuilder items: () -> [NonGroupSettingsBundleItem]
+    ) {
         self.title = title
         self.footerText = footerText
         self.items = items()
     }
-    
-    /// Makes a new `Group` with one child
-    /// - Parameters:
-    ///   - title: The title of the group
-    ///   - footerText: The footer of the group
-    ///   - item: The item to display inside the group
-//    public init(title: String? = nil, footerText: String? = nil, item: () -> SettingsBundleItem) {
-//        self.title = title
-//        self.footerText = footerText
-//        self.items = [item()]
-//    }
     
     public func makePlist() -> String {
         let entries: [KeyValuePair] = [

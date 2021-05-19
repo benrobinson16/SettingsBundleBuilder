@@ -4,17 +4,16 @@
 // SettingsBundleBuilder
 // Toggle.swift
 
-public struct Toggle: SettingsBundleItem {
+public struct Toggle: SettingsBundleItem, NonGroupSettingsBundleItem {
     let title: String
     let key: String
     let defaultValue: Bool
     
-    /// <#Description#>
-    /// - Parameters:
-    ///   - key: The `UserDefaults` property to read from/write to
-    ///   - title: The title of the toggle
-    ///   - defaultValue: The default value if not found in `UserDefaults`
-    public init(_ key: String, title: String, defaultValue: Bool) {
+    public init(
+        _ title: String,
+        key: String,
+        defaultValue: Bool
+    ) {
         self.key = key
         self.title = title
         self.defaultValue = defaultValue
