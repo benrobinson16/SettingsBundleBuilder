@@ -30,9 +30,9 @@ products: [
 )
 ```
 
-> Don't forget to add `"SettingsBundleBuilder"` to the main target in the package as well.
+> Don't forget to add `"SettingsBundleBuilder"` as a dependency to the main target in the package as well.
 
-3. In `main.swift`, create your settings bundle using the `makeSettingsBundle` method. An quick example:
+3. In `main.swift`, create your settings bundle using the `makeSettingsBundle` method. A quick example:
 
 ```swift
 import SettingsBundleBuilder
@@ -45,7 +45,7 @@ makeSettingsBundle {
 }
 ```
 
-4. Run the Swift Package which will generate the settings bundle and open it in a Finder window. Drag this into your main project and you're good to go!
+4. Run the Swift Package (`⌘ + R`) which will generate the settings bundle and open it in a Finder window. Drag this into your main project and you're good to go!
 
 ## Example Usage
 
