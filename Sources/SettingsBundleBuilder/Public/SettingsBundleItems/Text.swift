@@ -19,14 +19,14 @@ public struct Text: SettingsBundleItem, NonGroupSettingsBundleItem {
     ///   - title: The string to display to the side of the text
     ///   - key: The key of the `UserDefaults` value to read
     ///   - defaultValue: The value to use if the key is not in `UserDefaults`
-    ///   - possibleValues: The range of possible values the key in `UserDefaults` might take
-    ///   - readableVersions: The readable versions of `possibleValues`; array should be in same order and of same length
+    ///   - possibleValues: The range of possible values the key in `UserDefaults` might take. If not provided, the raw value in `UserDefaults` will be presented
+    ///   - readableVersions: The readable versions of `possibleValues`. Array should be in same order and of same length. If not provided, the raw value in `UserDefaults` will be presented
     public init(
         _ title: String,
         key: String,
         defaultValue: String,
-        possibleValues: [String]?,
-        readableVersions: [String]?
+        possibleValues: [String]? = nil,
+        readableVersions: [String]? = nil
     ) {
         self.title = title
         self.key = key
@@ -45,14 +45,9 @@ public struct Text: SettingsBundleItem, NonGroupSettingsBundleItem {
     ) {
         self.title = title
         self.key = UUID().uuidString
-        self.defaultValue = "default"
-        self.values = ["default"]
-        
-        if let constantValue = constantValue {
-            self.readable = [constantValue]
-        } else {
-            self.readable = [""]
-        }
+        self.defaultValue = constantValue ?? ""
+        self.values = nil
+        self.readable = nil
     }
     
     public func makePlist() -> String {

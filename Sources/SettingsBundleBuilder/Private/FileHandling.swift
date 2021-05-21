@@ -6,30 +6,24 @@
 
 import Foundation
 
-func makeAndWritePlist(contents: [SettingsBundleItem], filename: String) {
-    let contentplist = contents
-        .map { $0.makePlist() }
-        .joined(separator: "\n")
-    
-    let plist = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>StringsTable</key>
-            <string>Root</string>
-            <key>PreferenceSpecifiers</key>
-            <array>
-                \(contentplist)
-            </array>
-        </dict>
-        </plist>
-        """
-    
-    let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
+func getBaseUrl() -> URL {
+    return URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        .appendingPathComponent("Settings Bundle")
+}
+
+func deletePriorBundle() {
+    do {
+        try FileManager.default.removeItem(at: getBaseUrl())
+    } catch {
+        print("Could not delete previous settings bundle. If this is the first run, please ignore.")
+    }
+}
+
+func writePlist(contents: String, filename: String) {
+    let baseUrl = getBaseUrl()
     let bundleUrl = baseUrl.appendingPathComponent("Settings.bundle")
     try! FileManager.default.createDirectory(at: bundleUrl, withIntermediateDirectories: true, attributes: nil)
     
     let plistUrl = bundleUrl.appendingPathComponent("\(filename).plist")
-    try! plist.data(using: .utf8)?.write(to: plistUrl)
+    try! contents.data(using: .utf8)?.write(to: plistUrl)
 }

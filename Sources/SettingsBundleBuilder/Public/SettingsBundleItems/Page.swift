@@ -24,7 +24,8 @@ public struct Page: SettingsBundleItem, NonGroupSettingsBundleItem {
     
     public func makePlist() -> String {
         let filename = UUID().uuidString
-        makeAndWritePlist(contents: items, filename: filename)
+        let plist = makePlistFile(contents: items)
+        writePlist(contents: plist, filename: filename)
         
         let entries: [KeyValuePair] = [
             StringPair("Type", value: "PSChildPaneSpecifier"),

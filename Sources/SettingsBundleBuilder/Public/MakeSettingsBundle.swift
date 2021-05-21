@@ -8,13 +8,11 @@ import Foundation
 
 /// Makes and opens a new `Settings.bundle`
 /// - Parameter content: The content of the bundle
-public func makeSettingsBundle(
-    @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
-) {
-    let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
-    try! FileManager.default.removeItem(at: baseUrl)
+public func makeSettingsBundle(@SettingsBundleBuilder _ content: () -> [SettingsBundleItem]) {
+    deletePriorBundle()
     
-    makeAndWritePlist(contents: content(), filename: "Root")
+    let plist = makePlistFile(contents: content())
+    writePlist(contents: plist, filename: "Root")
     
-    shell("open", baseUrl.absoluteString)
+    shell("open", getBaseUrl().path)
 }

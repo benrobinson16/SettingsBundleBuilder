@@ -49,7 +49,8 @@ public struct RadioGroup: SettingsBundleItem {
             StringPair("DefaultValue", value: defaultValue),
             ArrayPair("Values", values: values),
             ArrayPair("Titles", values: readable),
-            BoolPair("DisplaySortedByTitle", value: sortByTitle)
+            BoolPair("DisplaySortedByTitle", value: sortByTitle),
+            StringPair("FooterText", value: footerText)
         ]
         return entries.compactMap { $0.getXML() }
             .joined(separator: "\n")

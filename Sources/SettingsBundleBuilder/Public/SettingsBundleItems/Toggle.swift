@@ -27,8 +27,8 @@ public struct Toggle: SettingsBundleItem, NonGroupSettingsBundleItem {
     public func makePlist() -> String {
         let entries: [KeyValuePair] = [
             StringPair("Type", value: "PSToggleSwitchSpecifier"),
-            StringPair("Key", value: key),
             StringPair("Title", value: title),
+            StringPair("Key", value: key),
             BoolPair("DefaultValue", value: defaultValue)
         ]
         return entries.compactMap { $0.getXML() }
