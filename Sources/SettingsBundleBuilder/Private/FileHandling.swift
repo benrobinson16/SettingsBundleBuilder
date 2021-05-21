@@ -1,5 +1,4 @@
-// Copyright (c) 2021 Ben Robinson.
-// All Rights Reserved.
+// Copyright (c) 2021 Benjamin Robinson.
 //
 // SettingsBundleBuilder
 // FileHandling.swift

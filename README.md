@@ -26,7 +26,7 @@ products: [
 .package(
     name: "SettingsBundleBuilder", 
     url: "https://github.com/benrobinson16/SettingsBundleBuilder.git", 
-    .upToNextMajor(from: "1.0.0")
+    from: "1.0.0"
 )
 ```
 
