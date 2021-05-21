@@ -85,7 +85,7 @@ Note that groups cannot be nested inside one another. The `RadioGroup` item acts
 
 ### Pages
 
-A `Page` offers a second page of settings. Simply provide the `title` and `content`.
+A `Page` can offer nested pages of settings. Simply provide the `title` and `content`.
 
 To split code apart for clarity, use something similar to the following:
 

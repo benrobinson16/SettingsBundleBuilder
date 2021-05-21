@@ -2,22 +2,9 @@
 // All Rights Reserved.
 //
 // SettingsBundleBuilder
-// MakeSettingsBundle.swift
+// FileHandling.swift
 
 import Foundation
-
-/// Makes and opens a new `Settings.bundle`
-/// - Parameter content: The content of the bundle
-public func makeSettingsBundle(
-    @SettingsBundleBuilder _ content: () -> [SettingsBundleItem]
-) {
-    let baseUrl = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Settings Bundle")
-    try! FileManager.default.removeItem(at: baseUrl)
-    
-    makeAndWritePlist(contents: content(), filename: "Root")
-    
-    shell("open", baseUrl.absoluteString)
-}
 
 func makeAndWritePlist(contents: [SettingsBundleItem], filename: String) {
     let contentplist = contents
@@ -45,14 +32,4 @@ func makeAndWritePlist(contents: [SettingsBundleItem], filename: String) {
     
     let plistUrl = bundleUrl.appendingPathComponent("\(filename).plist")
     try! plist.data(using: .utf8)?.write(to: plistUrl)
-}
-
-@discardableResult
-fileprivate func shell(_ args: String...) -> Int32 {
-    let task = Process()
-    task.launchPath = "/usr/bin/env"
-    task.arguments = args
-    task.launch()
-    task.waitUntilExit()
-    return task.terminationStatus
 }
