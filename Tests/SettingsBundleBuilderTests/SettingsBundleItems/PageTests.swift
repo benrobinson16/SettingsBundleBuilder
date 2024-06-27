@@ -66,4 +66,30 @@ class PageTests: XCTestCase {
         
         XCTAssertEqual(contents, expectedContents)
     }
+    func test_namedPages() {
+        deletePriorBundle()
+
+        let expectedFilename = "TestPage"
+        let text = Text("Text example", key: "textkey", defaultValue: "Text default")
+        let page = Page("Example Page Title", filename: expectedFilename) {
+            text
+        }
+        XCTAssertEqual(page.filename, expectedFilename)
+
+        let output = page.makePlist()
+
+        let filenameAsReference = output
+            .components(separatedBy: "<key>File</key>\n<string>")[1]
+            .components(separatedBy: "</string>")[0]
+
+        XCTAssertEqual(filenameAsReference, expectedFilename)
+
+        let url = getBaseUrl()
+            .appendingPathComponent("Settings.bundle")
+            .appendingPathComponent(expectedFilename)
+            .appendingPathExtension("plist")
+
+        let exists = FileManager.default.fileExists(atPath: url.path)
+        XCTAssertTrue(exists, "Second page file exists")
+    }
 }

@@ -81,6 +81,9 @@ makeSettingsBundle {
             Toggle("Experimental features", key: "experimental_features", defaultValue: false)
             Slider(key: "opacity", defaultValue: 50.0, min: 0.0, max: 100.0)
         }
+        Page("Secrets", filename: "Secrets") {
+            Text("This page needs a persistent name", constantValue: "because we will edit it manually")
+        }
     }
 }
 ```
@@ -130,6 +133,7 @@ Note that groups cannot be nested inside one another. The `RadioGroup` item acts
 ### Pages
 
 A `Page` can offer nested pages of settings. Simply provide the `title` and `content`.
+_You may also optionally provide a `filename`_
 
 To split code apart for clarity, use something similar to the following:
 
