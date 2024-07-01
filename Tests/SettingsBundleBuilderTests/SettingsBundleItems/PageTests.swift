@@ -66,6 +66,7 @@ class PageTests: XCTestCase {
         
         XCTAssertEqual(contents, expectedContents)
     }
+    
     func test_namedPages() {
         deletePriorBundle()
 
